@@ -1,4 +1,11 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("//www.fontstatic.com/f=bein" );
 // Uikit
-@import "~uikit/dist/css/uikit";
+@import "~uikit/dist/css/uikit-rtl.min";
+
+
+html, body, h1, h2, h3, h4, .uk-navbar-nav > li > a, .uk-navbar-item, .uk-logo
+.uk-card-title {
+  font-family: 'bein';
+}

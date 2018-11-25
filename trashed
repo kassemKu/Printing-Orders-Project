@@ -1,0 +1,116 @@
+<nav class="uk-tile-secondary uk-padding uk-padding-remove-vertical" uk-navbar>
+			<div class="uk-navbar-right">
+				<a href="/" class="uk-navbar-item uk-logo">{{ config('app.name', 'Laravel') }}</a>
+			</div>
+			<div class="uk-navbar-left">
+				@guest
+				<ul class="uk-navbar-nav">
+					<li>
+						<a href="{{ route('login') }}">Login</a>
+					</li>
+					<li>
+						<a href="{{ route('register') }}">Register</a>
+					</li>
+				</ul>
+				@else
+				<ul class="uk-navbar-nav">
+					<li>
+						<a href="#">{{ auth()->user()->name }}</a>
+						<div uk-dropdown="offset: -20">
+							<ul class="uk-nav uk-navbar-dropdown-nav">
+								<li class="uk-active uk-text-uppercase">
+									<a href="{{ route('logout') }}" class="uk-text-background" onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+										Logout
+									</a>
+								</li>
+							</ul>
+						</div>
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							{{ csrf_field() }}
+						</form>
+					</li>
+				</ul>
+				@endguest
+			</div>
+		</nav>
+
+
+
+    ????? App Nav ????
+
+
+
+		?????? register form ?????/
+
+		<div class="uk-container uk-margin uk-flex uk-flex-center">
+	<div class="uk-card uk-card-default uk-width-1-2@s">
+		<div class="uk-card-header">
+			<h3 class="uk-card-title uk-margin-remove">Register</h3>
+		</div>
+		<form class="uk-form-stacked" method="POST" action="{{ route('register') }}" novalidate>
+			{{ csrf_field() }}
+			<div class="uk-card-body">
+				<div class="uk-margin">
+					<label class="uk-form-label {{ $errors->has('name') ? ' uk-text-danger' : '' }}">
+						Name
+					</label>
+					<div class="uk-width-1-1 uk-inline">
+						<span class="uk-form-icon {{ $errors->has('name') ? ' uk-text-danger' : '' }}" uk-icon="icon: user">
+						</span>
+						<input id="name" type="name" class="uk-input {{ $errors->has('name') ? ' uk-form-danger' : '' }}"
+						 name="name" value="{{ old('name') }}" required autofocus>
+					</div>
+					@if ($errors->has('email'))
+					<span class="uk-text-small uk-text-danger">{{ $errors->first('email') }}</span>
+					@endif
+				</div>
+				<div class="uk-margin">
+					<label class="uk-form-label {{ $errors->has('email') ? ' uk-text-danger' : '' }}">
+						E-Mail Address
+					</label>
+					<div class="uk-width-1-1 uk-inline">
+						<span class="uk-form-icon {{ $errors->has('email') ? ' uk-text-danger' : '' }}" uk-icon="icon: user">
+						</span>
+						<input id="email" type="email" class="uk-input {{ $errors->has('email') ? ' uk-form-danger' : '' }}"
+						 name="email" value="{{ old('email') }}" required autofocus>
+					</div>
+					@if ($errors->has('email'))
+					<span class="uk-text-small uk-text-danger">{{ $errors->first('email') }}</span>
+					@endif
+				</div>
+				<div class="uk-margin">
+					<label class="uk-form-label {{ $errors->has('password') ? ' uk-text-danger' : '' }}">
+						Password
+					</label>
+					<div class="uk-width-1-1 uk-inline">
+						<span class="uk-form-icon {{ $errors->has('password') ? ' uk-text-danger' : '' }}"
+						 uk-icon="icon: lock">
+						</span>
+						<input id="password" type="password" class="uk-input {{ $errors->has('password') ? ' uk-form-danger' : '' }}"
+						 name="password" required>
+					</div>
+					@if ($errors->has('password'))
+					<span class="uk-text-small uk-text-danger">{{ $errors->first('password') }}</span>
+					@endif
+				</div>
+				<div class="uk-margin">
+					<label class="uk-form-label">
+						Confirm Password
+					</label>
+					<div class="uk-width-1-1 uk-inline">
+						<span class="uk-form-icon" uk-icon="icon: lock">
+						</span>
+						<input id="password" type="password" class="uk-input" name="password_confirmation"
+						 required>
+					</div>
+				</div>
+			</div>
+			<div class="uk-card-footer uk-clearfix">
+				<button type="submit" class="uk-button uk-button-primary uk-box-shadow-medium">
+					Register
+				</button>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,4 +1,4 @@
-@extends('layouts.app') 
+@extends('client.layouts.app') 
 
 @section('content')
 <div class="uk-container uk-margin-large uk-flex uk-flex-center">
